@@ -51,7 +51,7 @@ const displayPhoneDetails = phone => {
     const displayPhoneDetailsContainer = document.getElementById('phone-details');
     displayPhoneDetailsContainer.textContent = '';
     const div = document.createElement('div');
-    div.classList.add('card','mb-3','mx-auto','mb-4','shadow-lg','details-card'); 
+    div.classList.add('card','mb-3','mx-auto','mb-4','shadow-lg','details-card');
     div.innerHTML = `
     <div class="row  g-0">
        <div class="col-sm-2 col-md-4 pe-3">
@@ -61,7 +61,7 @@ const displayPhoneDetails = phone => {
          <div class="card-body">  
             <h4 class="card-title">${phone.name}</h4>
             <h5 class="card-text text-muted">${phone.brand}</h5> 
-            <span class="card-text">Release Date: <small class="text-muted">${phone.releaseDate}</small></span>
+            <span class="card-text">Release Date: <small class="text-muted">${phone?.releaseDate ||'Comming Soon!!'}</small></span>
             </br>
             </br>
             <h6 class='text-white'><span class='bg-dark rounded text-center ps-1 pe-1'>Main Features: </span></h6>
@@ -74,17 +74,28 @@ const displayPhoneDetails = phone => {
             <span class="card-text">Memory: <small class="text-muted">${phone.mainFeatures.memory}</small></span>
             </br>
             </br>
-            <h5 class='text-dark'>Sensors</h5>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[0]}</small></span>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[1]}</small></span>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[2]}</small></span>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[3]}</small></span>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[4]}</small></span>
-            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[5]}</small></span>
+            <h5 class='text-dark'>Sensors:</h5>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[0]||'Adding Soon'}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[1]||'Adding Soon'}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[2]||'Adding Soon'}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[3]||'Adding Soon'}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[4]||'Adding Soon'}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.mainFeatures?.sensors[5]||'Adding Soon'}</small></span>
+            <h5 class='text-dark'>Others:</h5>
+            <span>WLAN: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.WLAN||'Not Found'}</small></span>
+            <br>
+            <span>Bluetooth: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.Bluetooth||'Not Found'}</small></span>
+            <br>
+            <span>GPS: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.GPS||'Not Found'}</small></span>
+            <br>
+            <span>NFC: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.NFC||'Not Found'}</small></span>
+            <br>
+            <span>Radio: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.Radio||'Not Found'}</small></span>
+            <br>
+            <span>USB: <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone?.others?.USB||'Not Found'}</small></span>
            </div>
         </div>
     </div>
         `;
     displayPhoneDetailsContainer.appendChild(div);
 }
-
