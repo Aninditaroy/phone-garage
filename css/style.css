@@ -1,4 +1,9 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Josefin+Sans&family=Lexend+Deca:wght@100;200;300&family=Livvic:wght@100&family=Montserrat:wght@300&family=Orelega+One&family=Poppins:wght@500&family=Roboto:wght@500&family=Ubuntu:ital,wght@0,400;1,300&display=swap');
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
 /* search area */
 .input-group {
     padding-left: 150px;
@@ -10,6 +15,11 @@
     padding-right: 18px;
 }
 
+/* display phone cards */
+.card {
+    border: 2px solid rgba(235, 232, 232, 0.336);
+    border-radius: 15px;
+}
 /* media queries for input field */
 @media  (max-width: 575.98px) { 
    .input-group{
