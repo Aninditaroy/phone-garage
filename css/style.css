@@ -4,6 +4,7 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
 /* search area */
 .input-group {
     padding-left: 150px;
@@ -20,6 +21,22 @@ body {
     border: 2px solid rgba(235, 232, 232, 0.336);
     border-radius: 15px;
 }
+
+/* details phones card */
+
+.details-card {
+    max-width: 100%;
+    width: 65%;
+    max-height: 100%;
+    height:100%;
+}
+.details-image {
+    margin-left: 18px;
+    margin-top: 30px; 
+    max-width: 100%;
+    height: 75%;
+}
+
 /* media queries for input field */
 @media  (max-width: 575.98px) { 
    .input-group{

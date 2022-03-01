@@ -1,15 +1,19 @@
 // fetch search phone api
-const searchPhones = () =>{  
+const searchPhones = () => {
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
     inputField.value = '';
-    const url = (`https://openapi.programming-hero.com/api/phones?search=${inputText}`);
+    const displayPhoneContainer = document.getElementById('display-phones');
+    displayPhoneContainer.textContent = '';
+    const displayPhoneDetailsContainer = document.getElementById('phone-details');
+    displayPhoneDetailsContainer.textContent = '';
+    const url = (`https://openapi.programming-hero.com/api/phones?search=${inputText.toLowerCase()}`);
     fetch(url)
-    .then(res => res.json())
-    .then(data => displayPhones(data.data));
+        .then(res => res.json())
+        .then(data => displayPhones(data.data));
 }
 // display phones card
-const displayPhones = phones =>{
+const displayPhones = phones => {
     console.log(phones);
     const displayPhoneContainer = document.getElementById('display-phones');
     displayPhoneContainer.textContent = '';
@@ -27,10 +31,60 @@ const displayPhones = phones =>{
             <h5 class="card-text text-center text-muted">${phone.brand}</h5>
           </div>
           <div class="border-0 text-center mb-4">
-            <button class="btn btn-dark rounded-pill">See Details</button>
+           <button onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-dark rounded-pill">See Details</button>
           </div>
         </div>
         `;
         displayPhoneContainer.appendChild(div);
     });
 }
+// fetch phone details api
+const loadPhoneDetails = phoneId => {
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayPhoneDetails(data.data));
+}
+// display phone details
+const displayPhoneDetails = phone => {
+    console.log(phone);
+    const displayPhoneDetailsContainer = document.getElementById('phone-details');
+    displayPhoneDetailsContainer.textContent = '';
+    const div = document.createElement('div');
+    div.classList.add('card','mb-3','mx-auto','mb-4','shadow-lg','details-card'); 
+    div.innerHTML = `
+    <div class="row  g-0">
+       <div class="col-sm-2 col-md-4 pe-3">
+          <img src="${phone.image}" class="details-image rounded-start" alt="..."> 
+       </div>        
+       <div class="col-sm-10 col-md-8 mt-1">
+         <div class="card-body">  
+            <h4 class="card-title">${phone.name}</h4>
+            <h5 class="card-text text-muted">${phone.brand}</h5> 
+            <span class="card-text">Release Date: <small class="text-muted">${phone.releaseDate}</small></span>
+            </br>
+            </br>
+            <h6 class='text-white'><span class='bg-dark rounded text-center ps-1 pe-1'>Main Features: </span></h6>
+            <span class="card-text">Storage: <small class="text-muted">${phone.mainFeatures.storage}</small></span>
+            </br>
+            <span class="card-text">Display Size: <small class="text-muted">${phone.mainFeatures.displaySize}</small></span>
+            </br>
+            <span class="card-text">Chipset: <small class="text-muted">${phone.mainFeatures.chipSet}</small></span>
+            </br>
+            <span class="card-text">Memory: <small class="text-muted">${phone.mainFeatures.memory}</small></span>
+            </br>
+            </br>
+            <h5 class='text-dark'>Sensors</h5>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[0]}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[1]}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[2]}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[3]}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[4]}</small></span>
+            <small class="text-white bg-dark rounded text-center ps-1 pe-1">${phone.mainFeatures.sensors[5]}</small></span>
+           </div>
+        </div>
+    </div>
+        `;
+    displayPhoneDetailsContainer.appendChild(div);
+}
+
