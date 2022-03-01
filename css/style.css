@@ -37,11 +37,28 @@ body {
     height: 75%;
 }
 
+/* display error handle message*/
+#not-found-error {
+    display: none;
+}
+#no-phone-found {
+    display: none;
+}
 /* media queries for input field */
 @media  (max-width: 575.98px) { 
    .input-group{
      padding-left: 1px;
      padding-right: 12px;
      margin-right: 3px;
+   }
+   .details-card {
+     width: 100%;
+     height:100%;
+   }
+   .details-image {
+    margin-left: 45px;
+    margin-top: 30px; 
+    width: 60%;
+    height: 75%;
    }
 }
