@@ -1,0 +1,21 @@
+
+/* search area */
+.input-group {
+    padding-left: 150px;
+    padding-right: 220px;
+}
+.search-btn {
+    background-color: black;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+
+/* media queries for input field */
+@media  (max-width: 575.98px) { 
+   .input-group{
+     padding-left: 1px;
+     padding-right: 12px;
+     margin-right: 3px;
+   }
+}
