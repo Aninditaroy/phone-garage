@@ -65,7 +65,8 @@ const displayPhones = phones => {
                 <h5 class="card-text text-center text-muted">${phone.brand}</h5>
               </div>
               <div class="see-details border-0 text-center mb-4">
-               <button onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-dark rounded-pill">See Details</button>
+              <a href="#details-section"><button onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-dark rounded-pill">See Details</button></a>
+              
               </div>
              </div>
             </div>
