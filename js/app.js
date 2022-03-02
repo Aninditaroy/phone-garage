@@ -5,7 +5,14 @@ const displayError = error => {
 const displayNoPhoneFoundError = error => {
     document.getElementById('no-phone-found').style.display = error;
 }
-
+// spinner load
+const spinnerLoad = error =>{
+    document.getElementById('spinner').style.display = error;
+} 
+// display other phone details
+const otherPhoneDisplay = error => {
+    document.getElementById('see-more-btn').style.display = error;
+}
 // fetch search phone api
 const searchPhones = () => {
     const inputField = document.getElementById('input-field');
@@ -16,12 +23,14 @@ const searchPhones = () => {
     const displayPhoneDetailsContainer = document.getElementById('phone-details');
     displayPhoneDetailsContainer.textContent = '';
     if (inputText === '') {
+        spinnerLoad('none');
         displayError('block');
         displayNoPhoneFoundError('none');
     }
     else {
         displayError('none');
         displayNoPhoneFoundError('none');
+        spinnerLoad('block');
         const url = (`https://openapi.programming-hero.com/api/phones?search=${inputText.toLowerCase()}`);
         fetch(url)
             .then(res => res.json())
@@ -34,34 +43,40 @@ const displayPhones = phones => {
     console.log(phones);
     const displayPhoneContainer = document.getElementById('display-phones');
     displayPhoneContainer.textContent = '';
+    const displayPhoneDetailsContainer = document.getElementById('phone-details');
+    displayPhoneDetailsContainer.textContent = '';
+    let count = 20;
     if (phones.length == 0) {
+        spinnerLoad('none');
         displayNoPhoneFoundError('block');
     }
     else {
-        phones.forEach(phone => {
+        phones.slice(0, count).forEach(phone => {
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-        <div class="card mt-4 mb-4 g-4 w-100 h-100 shadow-lg">
-          <div class="text-center mt-4">
-              <img src="${phone.image}" class="card-img-top w-50" alt="...">
-          </div>
-          <span class="mt-4 border-2 border-top ms-5 me-5 border-dark"></span>
-          <div class="card-body">
-            <h4 class="card-title text-center">${phone.phone_name}</h4>
-            <h5 class="card-text text-center text-muted">${phone.brand}</h5>
-          </div>
-          <div class="border-0 text-center mb-4">
-           <button onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-dark rounded-pill">See Details</button>
-          </div>
-        </div>
-        `;
+            <div class="card mt-4 mb-4 g-4 w-100 h-100 shadow-lg">
+              <div class="text-center mt-4">
+                  <img src="${phone.image}" class="card-img-top w-50" alt="...">
+              </div>
+              <span class="mt-4 border-2 border-top ms-5 me-5 border-dark"></span>
+              <div class="card-body">
+                <h4 class="card-title text-center">${phone.phone_name}</h4>
+                <h5 class="card-text text-center text-muted">${phone.brand}</h5>
+              </div>
+              <div class="see-details border-0 text-center mb-4">
+               <button onclick="loadPhoneDetails('${phone.slug}')" class="btn btn-dark rounded-pill">See Details</button>
+              </div>
+             </div>
+            </div>
+            `;
             displayPhoneContainer.appendChild(div);
         });
         displayNoPhoneFoundError('none');
+        spinnerLoad('none');
     }
-
 }
+
 // fetch phone details api
 const loadPhoneDetails = phoneId => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
@@ -123,3 +138,4 @@ const displayPhoneDetails = phone => {
         `;
     displayPhoneDetailsContainer.appendChild(div);
 }
+

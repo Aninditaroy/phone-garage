@@ -33,7 +33,7 @@
         <h5 id="no-phone-found" class="text-danger">No such phone found.Try another!</h5>
     </div>
     <!-- phones details card -->
-    <section class="container mb-4">
+    <section id="details-section" class="container mb-4">
         <div class="mb-3">
             <div id="phone-details">
 
@@ -45,11 +45,20 @@
     <section class="container">
         <div class="mb-5">
             <div id="display-phones" class="row row-cols-1 row-cols-md-3 g-4">
-
+                
             </div>
         </div>
     </section>
+    <div class="mt-5 text-center mx-auto mb-4" id="see-more-btn">
+        <button onclick="displayPhones()" class="btn btn-dark rounded-pill">See more</button>
+    </div>
 
+    <!-- spinner load -->
+    <div class="d-flex justify-content-center">
+        <div id="spinner" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
 
     <!-- bootstrap bundle js cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
